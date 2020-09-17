@@ -3,10 +3,17 @@
 import sys
 
 def making_change(amount, denominations):
-  # Your code here
 
-  pass
-
+    if amount == 0:
+        return 1
+    elif amount < 0 or not denominations:
+        return 0
+    else:
+        coin = denominations[-1]
+        return sum(
+            making_change(amt, denominations[:-1])
+            for amt in range(amount, -1, -coin) 
+        )
 
 if __name__ == "__main__":
   # Test our your implementation from the command line
